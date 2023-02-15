@@ -1,0 +1,184 @@
+a,
+q,
+s,
+b,
+u,
+i,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+em,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+div,
+nav,
+del,
+pre,
+big,
+dfn,
+img,
+var,
+ins,
+kbd,
+cite,
+code,
+menu,
+body,
+html,
+span,
+abbr,
+samp,
+ruby,
+time,
+mark,
+form,
+aside,
+audio,
+video,
+embed,
+label,
+small,
+strike,
+strong,
+legend,
+canvas,
+center,
+applet,
+figure,
+footer,
+header,
+hgroup,
+object,
+output,
+iframe,
+article,
+acronym,
+address,
+section,
+caption,
+details,
+summary,
+fieldset,
+blockquote,
+figcaption {
+  /* display: block; */
+  font-size: 100%;
+}
+body {
+  height: 100%;
+
+  background-color: "#B7D9F2";
+}
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+input {
+  box-shadow: none;
+  -o-box-shadow: none;
+  -ms-box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+}
+input::-webkit-inner-spin-button,
+input::-webkit-outer-spin-button {
+  margin: 0;
+  -webkit-appearance: none;
+}
+button,
+a {
+  cursor: pointer;
+  display: inline-block;
+}
+img {
+  max-width: 100%;
+}
+* {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Montserrat;
+}
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgb(241, 241, 241);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #c5c5c5;
+  border-radius: 3px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+@font-face {
+  font-family: "Source Sans Pro";
+  src: local("Source Sans Pro"),
+    url("./assets/fonts/SourceSansPro-Black.ttf") format("truetype");
+  font-weight: bold;
+}
+@font-face {
+  font-family: "Source Sans Pro";
+  src: local("Source Sans Pro"),
+    url("./assets/fonts/SourceSansPro-BlackItalic.ttf") format("truetype");
+  font-weight: bold;
+}
+
+/* @font-face {
+  font-family: "Source Sans Pro";
+  src: local("Source Sans Pro"),
+    url("./assets/fonts/SourceSansPro-Bold.ttf") format("truetype");
+  font-weight: 600;
+} */
+/* @font-face {
+  font-family: "Source Sans Pro";
+  src: local("Source Sans Pro"),
+    url("./assets/fonts/SourceSansPro-BlackItalic.ttf") format("truetype");
+  font-weight: black;
+} */
+
+@font-face {
+  font-family: "Source Sans Pro";
+  src: local("Source Sans Pro"), url("./assets/fonts/SourceSansPro-Light.ttf");
+  font-weight: light;
+}
+
+@font-face {
+  font-family: "Source Sans Pro";
+  src: local("Source Sans Pro"),
+    url("./assets/fonts/SourceSansPro-LightItalic.ttf");
+  font-weight: light;
+}
+
+@font-face {
+  font-family: "Source Sans Pro";
+  src: local("Source Sans Pro"),
+    url("./assets/fonts/SourceSansPro-SemiBold.ttf");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "Source Sans Pro";
+  src: local("Source Sans Pro"), url("./assets/fonts/SourceSansPro-Regular.ttf");
+  font-weight: 400;
+}
+
+.font-face-gm {
+  font-family: "Source Sans Pro";
+  font-weight: 600;
+}

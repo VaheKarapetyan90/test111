@@ -1,0 +1,43 @@
+{
+  "name": "sensei_srm",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@emoji-mart/data": "^1.1.2",
+    "@emoji-mart/react": "^1.1.1",
+    "@reduxjs/toolkit": "1.9.1",
+    "@tinymce/tinymce-react": "4.2.0",
+    "@types/react-svg": "5.0.0",
+    "@types/styled-components": "5.1.26",
+    "antd": "5.0.7",
+    "axios": "1.2.1",
+    "emoji-mart": "^5.5.2",
+    "perfect-scrollbar": "1.5.5",
+    "react": "^18.2.0",
+    "react-custom-scroll": "4.4.0",
+    "react-dom": "^18.2.0",
+    "react-lottie": "^1.2.3",
+    "react-redux": "8.0.5",
+    "react-router-dom": "6.4.5",
+    "react-svg": "15.1.16",
+    "react-virtuoso": "^4.0.8",
+    "socket.io-client": "^4.5.4",
+    "styled-components": "5.3.6"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.191",
+    "@types/react": "^18.0.26",
+    "@types/react-custom-scroll": "4.3.2",
+    "@types/react-dom": "^18.0.9",
+    "@types/react-lottie": "^1.2.6",
+    "@vitejs/plugin-react": "^3.0.0",
+    "typescript": "^4.9.3",
+    "vite": "^4.0.0"
+  }
+}

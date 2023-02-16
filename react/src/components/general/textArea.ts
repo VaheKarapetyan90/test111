@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import TextArea from "antd/es/input/TextArea";
 
 type TextProps = {
   bgc?: string;
@@ -8,13 +9,14 @@ type TextProps = {
   border?: string;
   margin?: string;
   radius?: string;
+  autoSize?: any;
   padding?: string;
   mxheight?: string;
   placeholder?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-const Textarea = styled.textarea<TextProps>`
+const Textarea = styled(TextArea)<TextProps>`
   width: ${({ width }) => width};
   border: ${({ border }) => border};
   height: ${({ height }) => height};
@@ -23,5 +25,9 @@ const Textarea = styled.textarea<TextProps>`
   background-color: ${({ bgc }) => bgc};
   max-height: ${({ mxheight }) => mxheight};
   border-radius: ${({ radius }) => radius};
+
+  .ant-input {
+    border-radius:0 !inportant;
+  }
 `;
 export default Textarea;

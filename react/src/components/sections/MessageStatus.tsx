@@ -12,22 +12,12 @@ const MessageStatus: FC<MessageStatusProps> = ({
   status,
 }) => {
   return (
-    <Div
-      flex
-      margin="0 0 0 5px"
-      // position="absolute"
-      // bottom={firstMessage ? "0" : "0"}
-      // right={!left ? "30px" : ""}
-      // left={left ? "30px" : ""}
-    >
+    <Div flex margin="0 0 0 5px">
       <SvgIcon
         Icon={
           status == "received" ? Recieved : status == "seen" ? Seen : Sended
         }
       ></SvgIcon>
-      {/* <Text color="#878787" fSize="12px" lineHeight="15px" fWeight="400">
-        {status}
-      </Text> */}
     </Div>
   );
 };

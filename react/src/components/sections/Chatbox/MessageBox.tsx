@@ -3,6 +3,7 @@ import { FC, useMemo } from "react";
 import { MessageBoxProps } from "./types";
 
 import SvgIcon from "../svgIcon";
+import MessageStatus from "../MessageStatus";
 
 import {
   Div,
@@ -13,40 +14,34 @@ import {
   GlobalStyle,
 } from "../../general";
 
-import { useInitials } from "../../../hooks/UseInitials";
-
-import MessageStatus from "../MessageStatus";
-
-import { getTime } from "../../../helpers/getTime";
 import { chatState } from "../../meta/Context/ChatProvider";
-import { getExtension } from "../../../helpers/getExtention";
+
 import { File } from "../../../assets/images/svg-components/File";
 import { Copy } from "../../../assets/images/svg-components/Copy";
 import { Edit } from "../../../assets/images/svg-components/Edit";
 import { Dots } from "../../../assets/images/svg-components/Dots";
 import { Quote } from "../../../assets/images/svg-components/Quote";
 import { Forward } from "../../../assets/images/svg-components/Forward";
-import { createTask } from "../../../assets/images/svg-components/createTask";
 import { useTime } from "../../../hooks/useTime";
+import { createTask } from "../../../assets/images/svg-components/createTask";
+import { useInitials } from "../../../hooks/UseInitials";
+import { getExtension } from "../../../helpers/getExtention";
 
 const MessageBox: FC<MessageBoxProps> = ({
   item,
   hover,
   userInfo,
   openCard,
-  seeStatus,
-  showStatus,
   setOpenCard,
   onMouseEnter,
-  onMouseLeave,
   firstMessage,
   handleSeeStatus,
   handleHideStatus,
 }) => {
   const { collapsed, resize, parsedData } = chatState();
 
-  const initials = useInitials(userInfo?.user_name || parsedData?.name);
   const [hour, minute] = useTime(item.created_at);
+  const initials = useInitials(userInfo?.user_name || parsedData?.name);
 
   const content = (
     <Div>
@@ -152,27 +147,30 @@ const MessageBox: FC<MessageBoxProps> = ({
             justifycontent="flex-end"
             alignitems="center"
           >
-            {/* {hover === item && (
+            {hover === item && (
               <Popover
-                overlayInnerStyle={{ backgroundColor: "#fff", padding: 0 }}
+                overlayStyle={{ paddingRight: 0, paddingLeft: 0 }}
+                overlayInnerStyle={{
+                  backgroundColor: "#fff",
+                  padding: 0,
+                }}
                 placement="leftTop"
                 title={content}
                 trigger="click"
               >
                 <GlobalStyle />
                 <SvgIcon
-                  width="2px"
                   Icon={Dots}
-                  margin="0 5px 0 0"
+                  margin="0 9px 0 9px"
                   fill="#9E9E9E"
-                  visibility="hidden"
                   onClick={() => {
                     setOpenCard(!openCard);
                   }}
                 />
               </Popover>
-            )} */}
+            )}
             <Div
+              // margin="0 0 0 9px"
               mxWidth={`${
                 resize && !collapsed
                   ? "650px"
@@ -196,8 +194,7 @@ const MessageBox: FC<MessageBoxProps> = ({
                     ? "#fff"
                     : "rgba(196, 210, 218, 0.59)"
                 }
-                // padding="6px 16px"
-                rounded="50px 0px  18px 50px"
+                rounded="18px 0px  18px 18px"
               >
                 {item?.content ? (
                   <>
@@ -237,9 +234,8 @@ const MessageBox: FC<MessageBoxProps> = ({
                     <Image
                       src={`/upload/${item?.file}`}
                       alt="img"
-                      // width="70px"
-                      // height="70px"
-                      objectFit="contain"
+                      width="70px"
+                      height="70px"
                     />
                     <Div flex justifycontent="flex-end" padding="0 8px 6px 8px">
                       <Text
@@ -296,25 +292,6 @@ const MessageBox: FC<MessageBoxProps> = ({
                 )}
               </Div>
             </Div>
-            {hover === item && (
-              <Popover
-                overlayInnerStyle={{ backgroundColor: "#fff", padding: 0 }}
-                placement="leftTop"
-                title={content}
-                trigger="click"
-              >
-                <GlobalStyle />
-                <SvgIcon
-                  // width="2px"
-                  Icon={Dots}
-                  margin="0 0 0 5px"
-                  visibility="hidden"
-                  onClick={() => {
-                    setOpenCard(!openCard);
-                  }}
-                />
-              </Popover>
-            )}
           </Div>
         </div>
       ) : (
@@ -352,6 +329,7 @@ const MessageBox: FC<MessageBoxProps> = ({
           >
             <Div>
               <Div
+                // margin="0 9px 0 0"
                 mxWidth={`${
                   resize && !collapsed
                     ? "650px"
@@ -373,8 +351,7 @@ const MessageBox: FC<MessageBoxProps> = ({
                     ? "#fff"
                     : "#E1E3F1"
                 }
-                // padding="6px 16px"
-                rounded="0 50px 50px 18px"
+                rounded="0 18px 18px 18px"
               >
                 {item?.content ? (
                   <>
@@ -387,11 +364,7 @@ const MessageBox: FC<MessageBoxProps> = ({
                     >
                       {item?.content}
                     </Text>
-                    <Div
-                      flex
-                      justifycontent="flex-end"
-                      padding="0 18px 6px 8px"
-                    >
+                    <Div flex justifycontent="flex-end" padding="0 8px 6px 8px">
                       <Text
                         color="#858585"
                         fSize="12px"
@@ -414,31 +387,56 @@ const MessageBox: FC<MessageBoxProps> = ({
                       alt="img"
                       width="70px"
                       height="70px"
-                      objectFit="contain"
                     />
+                    <Div flex justifycontent="flex-end" padding="0 8px 6px 8px">
+                      <Text
+                        color="#858585"
+                        fSize="12px"
+                        fWeight="400"
+                        lineHeight="15px"
+                        padding="0 0 0 10px "
+                      >
+                        {`${hour}:${minute} `}
+                      </Text>
+                    </Div>
                   </Div>
                 ) : (
-                  <FileLink
-                    display="flex"
-                    jContent="center"
-                    alignitems="center"
-                    align="center"
-                    href={`/upload/${item?.file}`}
-                    target="_blank"
-                  >
-                    <SvgIcon Icon={File} width="30px" height="30px"></SvgIcon>
-                    <Text
-                      color="#373435"
-                      mxWidth="200px"
-                      owerflowWrap="break-word"
-                    >{` ${item?.file}`}</Text>
-                  </FileLink>
+                  <>
+                    <FileLink
+                      padding="3px 16px"
+                      display="flex"
+                      jContent="center"
+                      alignitems="center"
+                      align="center"
+                      href={`/upload/${item?.file}`}
+                      target="_blank"
+                    >
+                      <SvgIcon Icon={File} width="30px" height="30px"></SvgIcon>
+                      <Text
+                        color="#373435"
+                        mxWidth="200px"
+                        owerflowWrap="break-word"
+                      >{` ${item?.file}`}</Text>
+                    </FileLink>
+                    <Div flex justifycontent="flex-end" padding="0 8px 6px 8px">
+                      <Text
+                        color="#858585"
+                        fSize="12px"
+                        fWeight="400"
+                        lineHeight="15px"
+                        padding="0 0 0 10px "
+                      >
+                        {`${hour}:${minute} `}
+                      </Text>
+                    </Div>
+                  </>
                 )}
               </Div>
             </Div>
 
             {hover === item && (
               <Popover
+                overlayStyle={{ paddingRight: 0, paddingLeft: 0 }}
                 overlayInnerStyle={{ backgroundColor: "#fff", padding: 0 }}
                 placement="rightTop"
                 title={content}
@@ -446,11 +444,10 @@ const MessageBox: FC<MessageBoxProps> = ({
               >
                 <GlobalStyle />
                 <SvgIcon
-                  width="2px"
+                  zIndx="9999"
                   Icon={Dots}
-                  margin="0 10px 0 9px"
+                  margin="0 9px 0 9px"
                   fill="#9E9E9E"
-                  visibility="hidden"
                   onClick={() => {
                     setOpenCard(!openCard);
                   }}

@@ -8,6 +8,7 @@ interface Props {
   color?: string;
   fill?: string;
   visibility?: string;
+  zIndx?: string;
   Icon: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
 
   onClick?: () => void;

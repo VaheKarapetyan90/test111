@@ -132,6 +132,31 @@ const Window: FC<IWindowProps> = ({ messageList }) => {
   const handleMouseLeave = useCallback(() => {
     !opneCard && setHover(null);
   }, [hover]);
+  const handleKeyPress = (e: any) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault(); // prevent default behavior of adding a new line
+      if (text !== "") {
+        setMessageData([
+          ...newData,
+          {
+            sender_id: parsedData?.id,
+            name: parsedData?.name,
+            picture: parsedData?.picture,
+            content: text,
+          },
+        ]);
+
+        sendMessage({
+          content: text,
+          to: userInfo?.user_id,
+          from: parsedData?.id,
+        });
+        stopTyping(userInfo?.user_id);
+      }
+      setText("");
+      setEmojiOpen(false);
+    }
+  };
 
   const handleSubmit = (value: any) => {
     const { message } = value;
@@ -258,7 +283,7 @@ const Window: FC<IWindowProps> = ({ messageList }) => {
           ></CardWrapper>
         )}
 
-        {/* {!declined && (
+        {!declined && (
           <FormGroup
             form={form}
             formItems={MessageInputForm}
@@ -266,17 +291,18 @@ const Window: FC<IWindowProps> = ({ messageList }) => {
             emojiOpen={emojiOpen}
             setEmojiOpen={setEmojiOpen}
             onFinish={handleSubmit}
+            handleKeyPress={handleKeyPress}
           />
-        )} */}
+        )}
 
-        <FormGroup
+        {/* <FormGroup
           form={form}
           formItems={MessageInputForm}
           window
           emojiOpen={emojiOpen}
           setEmojiOpen={setEmojiOpen}
           onFinish={handleSubmit}
-        />
+        /> */}
       </Wrapper>
     </>
   );

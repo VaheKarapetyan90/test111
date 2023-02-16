@@ -8,5 +8,5 @@ export type FormProps = {
   setEmojiOpen?: any;
   form?: {};
   text?: string;
-  
+  handleKeyPress?: any;
 };

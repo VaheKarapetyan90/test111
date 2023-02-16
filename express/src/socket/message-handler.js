@@ -101,10 +101,6 @@ class MessageHandler {
       fs.writeFile(`/app/upload/${data.content.name}`, content.originFileObj, (err) => {
         callback({ message: err ? 'failure' : 'success' });
       });
-
-      // fs.writeFile(`../react/upload/${data.content.name}`, content.originFileObj, (err) => {
-      //   callback({ message: err ? 'failure' : 'success' });
-      // });
     };
   }
 

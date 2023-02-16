@@ -3,7 +3,7 @@ import React from "react";
 export const Dots = () => {
   return (
     <svg
-      width="4"
+      width="4px"
       height="18"
       viewBox="0 0 4 18"
       fill="none"

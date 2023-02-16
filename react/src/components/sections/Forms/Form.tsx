@@ -20,6 +20,8 @@ import { chatState } from "../../meta/Context/ChatProvider";
 import data from "@emoji-mart/data";
 
 import Picker from "@emoji-mart/react";
+import TextArea from "../../general/textArea";
+// import TextArea from "antd/es/input/TextArea";
 
 const FormGroup: FC<FormProps> = ({
   onFinish,
@@ -29,6 +31,7 @@ const FormGroup: FC<FormProps> = ({
   onFinishFailed,
   window,
   formItems,
+  handleKeyPress,
 }) => {
   const { userInfo, setLoading, text, setText, firstMessage, resize } =
     chatState();
@@ -84,9 +87,13 @@ const FormGroup: FC<FormProps> = ({
   const onEmojiClick = (emojiObject: any) => {
     const cursor: any = inputRef.current;
     cursor.focus();
-
-    const start = text.substring(0, cursor.selectionStart);
-    const end = text.substring(cursor.selectionStart);
+    const start = text.substring(
+      0,
+      cursor.resizableTextArea.textArea.selectionStart
+    );
+    const end = text.substring(
+      cursor.resizableTextArea.textArea.selectionStart
+    );
     const msg = start + `${emojiObject.native}` + end;
     setText(msg);
   };
@@ -123,10 +130,11 @@ const FormGroup: FC<FormProps> = ({
                 />
               </Div>
             )}
-            <input
+            {/* <input
               ref={inputRef}
               onChange={handleTyping}
               style={{
+                overflow: "hidden",
                 height: "100%",
                 maxHeight: "76px",
                 margin: "0",
@@ -139,10 +147,24 @@ const FormGroup: FC<FormProps> = ({
                 fontSize: "16px",
                 lineHeight: "20px",
               }}
-              // disabled={firstMessage ? true : false}
+              disabled={firstMessage ? true : false}
               value={text}
               name={name}
               placeholder="Write a message..."
+            /> */}
+            <TextArea
+              // rows={10}
+              // cols={3}
+              ref={inputRef}
+              mxheight="76px"
+              width="100%"
+              onPressEnter={handleKeyPress}
+              height="100%"
+              name={name}
+              value={text}
+              onChange={handleTyping}
+              placeholder="Write a message..."
+              autoSize={{ minRows: 2, maxRows: 2 }}
             />
           </Div>
         ) : (
@@ -197,7 +219,7 @@ const FormGroup: FC<FormProps> = ({
                   }}
                 ></SvgIcon>
                 <Button
-                  // disabled={firstMessage ? true : false}
+                  disabled={firstMessage ? true : false}
                   htmlType="submit"
                   width="30px"
                   height="30px"

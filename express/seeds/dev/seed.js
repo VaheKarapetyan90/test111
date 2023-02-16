@@ -23,9 +23,7 @@ async function seed(pg) {
       position: 'backend developer',
       department: 'sensei',
       password: bCrypt.hashSync(USER_PASSORD, bCrypt.genSaltSync(10), null),
-      picture:
-      `https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=
-      rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80`,
+      picture:'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80',
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString(),
       status: 'active'
@@ -37,8 +35,7 @@ async function seed(pg) {
       position: 'backend developer',
       department: 'google',
       password: bCrypt.hashSync(USER_PASSORD, bCrypt.genSaltSync(10), null),
-      picture: `https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib
-      =rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80`,
+      picture: 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80',
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString(),
       status: 'active'
@@ -50,8 +47,7 @@ async function seed(pg) {
       position: 'frontend developer',
       department: 'facebook',
       password: bCrypt.hashSync(USER_PASSORD, bCrypt.genSaltSync(10), null),
-      picture: `https://img.freepik.com/premium-
-      photo/lonely-girl-waiting-love-park_123211-535.jpg?w=740`,
+      picture: 'https://img.freepik.com/premium-photo/lonely-girl-waiting-love-park_123211-535.jpg?w=740',
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString(),
       status: 'active'
@@ -63,8 +59,7 @@ async function seed(pg) {
       position: 'frontend developer',
       department: 'hollywood',
       password: bCrypt.hashSync(USER_PASSORD, bCrypt.genSaltSync(10), null),
-      picture: `https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-
-      profile-picture-973460__340.png`,
+      picture: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png',
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString(),
       status: 'active'
@@ -76,9 +71,7 @@ async function seed(pg) {
       position: 'frontend developer',
       department: 'hollywood',
       password: bCrypt.hashSync(USER_PASSORD, bCrypt.genSaltSync(10), null),
-      picture: `https://media.istockphoto.com/id/1367909982/
-      photo/young-african-american-man-uses-a-mobile-phone-on-the-go.jpg?b
-      =1&s=170667a&w=0&k=20&c=P-ouXUH-g64K9401OgpL913bZwew7ObDUw2WOAAw3gE=`,
+      picture: 'https://images.unsplash.com/photo-1639149888905-fb39731f2e6c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80',
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString(),
       status: 'active'
@@ -90,8 +83,7 @@ async function seed(pg) {
       position: 'QA',
       department: 'sensei',
       password: bCrypt.hashSync(USER_PASSORD, bCrypt.genSaltSync(10), null),
-      picture: `https://images.unsplash.com/photo-1639149888905-fb39731f2e6c?ixlib
-      =rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80`,
+      picture: 'https://images.unsplash.com/photo-1639149888905-fb39731f2e6c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80',
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString(),
       status: 'active'
@@ -103,8 +95,7 @@ async function seed(pg) {
       position: 'UI/UX',
       department: 'sensei',
       password: bCrypt.hashSync(USER_PASSORD, bCrypt.genSaltSync(10), null),
-      picture: `https://images.unsplash.com/photo-1621592484082-2d05b1290d7a?ixlib=rb-4.0.3&ixid
-      =MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80`,
+      picture: 'https://images.unsplash.com/photo-1621592484082-2d05b1290d7a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString(),
       status: 'active'

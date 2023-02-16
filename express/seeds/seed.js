@@ -11,7 +11,6 @@ async function seed(pg) {
   await pg('messages').truncate();
   // Deletes ALL existing entries with cascade.
   await pg.raw('TRUNCATE TABLE users RESTART IDENTITY CASCADE');
-  await pg.raw('TRUNCATE TABLE chat_members RESTART IDENTITY CASCADE');
   await pg.raw('TRUNCATE TABLE chats RESTART IDENTITY CASCADE');
 
   // Inserts seed entries
@@ -23,7 +22,6 @@ async function seed(pg) {
       phone: '+374999999',
       position: 'backend developer',
       department: 'sensei',
-      // password: bCrypt.hashSync(USER_PASSORD, bCrypt.genSaltSync(10), null),
       password: bCrypt.hashSync(USER_PASSORD, bCrypt.genSaltSync(10), null),
       picture:
       `https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=

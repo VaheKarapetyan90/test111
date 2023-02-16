@@ -379,7 +379,6 @@ export const Autentication = createApi({
               updateCachedData((draft) => {
                 draft?.forEach((element: { status: string }) => {
                   if (element.status !== "seen") {
-                    console.log("status", status);
                     element.status = status;
                   }
                   return element;

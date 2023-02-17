@@ -90,7 +90,7 @@ const Card: FC<CardProps> = ({
     <CardWrapper
       cursor="pointer"
       bgc="#fff"
-      borderB="1px solid #ABC2DA"
+      borderb="1px solid #ABC2DA"
       onClick={memoizedCallback}
     >
       <Content

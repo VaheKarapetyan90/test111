@@ -18,7 +18,7 @@ type DivProps = {
   borderL?: string;
   borderR?: string;
   borderT?: string;
-  borderB?: string;
+  borderb?: string;
   padding?: string;
   rounded?: string;
   mnHeight?: string;
@@ -55,7 +55,7 @@ const Div = styled.div<DivProps>`
   min-height: ${({ mnHeight }) => mnHeight};
   border-right: ${({ borderR }) => borderR};
   border-radius: ${({ rounded }) => rounded};
-  border-bottom: ${({ borderB }) => borderB};
+  border-bottom: ${({ borderb }) => borderb};
   display: ${({ flex }) => (flex ? "flex" : "")};
   align-items: ${({ alignitems }) => alignitems};
   flex-direction: ${({ fDirection }) => fDirection};

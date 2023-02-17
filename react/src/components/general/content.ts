@@ -15,7 +15,7 @@ interface IProps {
   borderL?: string;
   borderR?: string;
   borderT?: string;
-  borderB?: string;
+  borderb?: string;
   display?: string;
   padding?: string;
   jContent?: string;
@@ -40,7 +40,7 @@ const Content = styled.div`
   max-height: ${({ mxheight }) => mxheight};
   min-height: ${({ mnHeight }) => mnHeight};
   border-right: ${({ borderR }) => borderR};
-  border-bottom: ${({ borderB }) => borderB};
+  border-bottom: ${({ borderb }) => borderb};
   transition: ${({ transition }) => transition};
   justify-content: ${({ jContent }) => jContent};
   padding: ${({ padding }) => padding || "15px"};

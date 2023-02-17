@@ -1,5 +1,5 @@
 import { Skeleton } from "antd";
-import { FC, useState, useRef, useEffect } from "react";
+import { FC, useState, useEffect } from "react";
 
 import { MessageListProps } from "./types";
 
@@ -208,7 +208,7 @@ const MessageList: FC<MessageListProps> = ({
       }`}
       height={`${resize && "100%"}`}
     >
-      <Div padding="20px 20px 20px 20px" borderB="1px solid #ABC2DA">
+      <Div padding="20px 20px 20px 20px" borderb="1px solid #ABC2DA">
         <Flex justifycontent="space-between">
           <Div flex alignitems="center">
             <SvgIcon
@@ -309,16 +309,15 @@ const MessageList: FC<MessageListProps> = ({
         mxheight="648px"
         oY="auto"
       >
-        {usersQueryLoading && <Skeleton active />}
-        {userMessages}
-        {groupMessages}
+        {usersQueryLoading ? <Skeleton active /> : userMessages}
+        {usersQueryLoading ? <Skeleton active /> : groupMessages}
 
         {usersQueryData === false && !usersQueryData && (
           <>
             <Div>
               <CardWrapper
                 bgc="#fff"
-                borderB="1px solid #ABC2DA"
+                borderb="1px solid #ABC2DA"
                 padding="14px 12px 20px 20px"
               >
                 <Text fWeight="600" fSize="16px" lineHeight="20px">

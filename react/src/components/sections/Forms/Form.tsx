@@ -39,7 +39,7 @@ const FormGroup: FC<FormProps> = ({
   const [file, setFile] = useState("");
   const [query, setQuery] = useState("");
   const [typing, {}] = useTypingMutation();
-  const [sendFile, {}] = useSendFileMutation();
+  const [sendFile, { isLoading }] = useSendFileMutation();
   const [stopTyping, {}] = useStopTypingMutation();
   const { data: typingData } = useTypeingDataQuery();
   const [defaultFileList, setDefultFileList] = useState<UploadFile[]>([]);
@@ -65,17 +65,24 @@ const FormGroup: FC<FormProps> = ({
   const handleChange = async ({ file }: { file: any }) => {
     setDefultFileList([...defaultFileList, file]);
     setFile(file);
+
     if (file.status === "uploading") {
       setLoading(true);
     }
     if (file.status === "done") {
       sendFile({ content: file, to: userInfo?.user_id, from: loggedInUserId });
-      setLoading(false);
     }
     if (file.status === "error") {
       setLoading(false);
     }
   };
+  useEffect(() => {
+    if (isLoading) {
+      setLoading(true);
+    } else {
+      setLoading(false);
+    }
+  }, [isLoading]);
 
   useEffect(() => {
     const timeOutId = setTimeout(() => {
@@ -130,34 +137,12 @@ const FormGroup: FC<FormProps> = ({
                 />
               </Div>
             )}
-            {/* <input
-              ref={inputRef}
-              onChange={handleTyping}
-              style={{
-                overflow: "hidden",
-                height: "100%",
-                maxHeight: "76px",
-                margin: "0",
-                borderRadius: "9px 9px 0 0",
-                width: "100%",
-                border: "1px solid #DFE5E6",
-                padding: "14px",
-                fontFamily: "Source Sans Pro",
-                fontWeight: 400,
-                fontSize: "16px",
-                lineHeight: "20px",
-              }}
-              disabled={firstMessage ? true : false}
-              value={text}
-              name={name}
-              placeholder="Write a message..."
-            /> */}
             <TextArea
-              // rows={10}
-              // cols={3}
               ref={inputRef}
               mxheight="76px"
+              borderb="none"
               width="100%"
+              border="1px solid #DFE5E6"
               onPressEnter={handleKeyPress}
               height="100%"
               name={name}
@@ -173,6 +158,7 @@ const FormGroup: FC<FormProps> = ({
       </Form.Item>
     );
   });
+
   return (
     <Form
       form={form}
@@ -191,6 +177,8 @@ const FormGroup: FC<FormProps> = ({
       <Form.Item wrapperCol={{ offset: 6, span: 14 }}>
         {window ? (
           <Div
+            border="1px solid #DFE5E6"
+            borderT="none"
             bgc="#EBEBEB"
             padding="10px 15px 8px 15px"
             rounded="0 0 9px  9px"
@@ -219,7 +207,6 @@ const FormGroup: FC<FormProps> = ({
                   }}
                 ></SvgIcon>
                 <Button
-                  disabled={firstMessage ? true : false}
                   htmlType="submit"
                   width="30px"
                   height="30px"

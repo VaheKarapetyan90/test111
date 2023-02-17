@@ -46,6 +46,7 @@ export type UserInfoProps = {
 
 export type MessageWindowListProps = {
   messagesLoading?: boolean;
+  messagesFetching?: boolean;
   data?: any;
 };
 
@@ -60,6 +61,8 @@ export interface IMessageData {
 }
 
 export interface IWindowProps {
+  messagesLoading?: boolean;
+  messagesFetching?: boolean;
   messageList: IMessagesObject;
 }
 

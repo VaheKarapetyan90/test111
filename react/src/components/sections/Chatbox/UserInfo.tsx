@@ -1,5 +1,6 @@
 import _ from "lodash";
-import { FC, useEffect, useLayoutEffect, useState } from "react";
+
+import { FC, useEffect, useState } from "react";
 
 import SvgIcon from "../svgIcon";
 
@@ -38,6 +39,7 @@ const UserInfo: FC<UserInfoProps> = ({ data }) => {
     setFirstMessage,
     setDeclined,
     page,
+    declined,
     parsedData,
   } = chatState();
 
@@ -67,7 +69,6 @@ const UserInfo: FC<UserInfoProps> = ({ data }) => {
           show = true;
         }
       } else if (
-        // TODO chat.group_admin_id !== loggedinUserId
         data?.chat?.chat_status === "not-selected" &&
         recipientInfo?.every((msg: { sender_id: number }) => {
           return msg.sender_id !== loggedinUserId;
@@ -103,7 +104,7 @@ const UserInfo: FC<UserInfoProps> = ({ data }) => {
       bgc="#F5F7F9"
       mxheight={firstMessage ? "126px" : "77px"}
       padding="8px 20px 0 20px"
-      borderB="1px solid #D9D9D9"
+      borderb="1px solid #D9D9D9"
     >
       <Flex justifycontent="space-between">
         <Flex>

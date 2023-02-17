@@ -15,12 +15,7 @@ export function AppRoutes() {
 
   const getAppBasedOnAuth = () => {
     if (token || auth) {
-      return (
-        <Routes>
-          <Route path={appRoutes.home()} element={<Home />} />
-          {/* <Route path={AppRoutes.fallback()} element={<Home />} /> */}
-        </Routes>
-      );
+      return <AuthenticatedApp />;
     }
     if (!token || !auth) {
       return <UnauthenticatedApp />;

@@ -1,6 +1,7 @@
 import { FC, useEffect, useState, useRef, Key, useCallback } from "react";
-import { Form as AntdForm, Spin } from "antd";
+import { Form as AntdForm, Skeleton, Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
+import { Loading3QuartersOutlined } from "@ant-design/icons";
 
 import Lottie from "react-lottie";
 
@@ -14,7 +15,6 @@ import animationData from "../../../animations/typing.json";
 
 import { MessageInputForm } from "../../../helpers/messageInputForm";
 import {
-  useGetMessagesInfoQuery,
   useGetMessagesQuery,
   useLazyGetMessagesByChatIdQuery,
   useSendMessageMutation,
@@ -22,11 +22,17 @@ import {
   useTypeingDataQuery,
 } from "../../../libs/redux/auth.api";
 import { chatState } from "../../meta/Context/ChatProvider";
-import usePrevious from "../../../hooks/usePrevious";
 
 const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
+const antIconsendFile = (
+  <Loading3QuartersOutlined style={{ fontSize: 24 }} spin />
+);
 
-const Window: FC<IWindowProps> = ({ messageList }) => {
+const Window: FC<IWindowProps> = ({
+  messageList,
+  messagesFetching,
+  messagesLoading,
+}) => {
   const {
     loading,
     userInfo,
@@ -44,9 +50,6 @@ const Window: FC<IWindowProps> = ({ messageList }) => {
     ref,
     parsedData,
   } = chatState();
-
-  // userInfo?.user_id === messageList?.user_id &&
-  //   console.log("7777", messageList?.user_id);
 
   const [opneCard, setOpenCard] = useState<boolean>(false);
   const [hover, setHover] = useState(null);
@@ -85,7 +88,7 @@ const Window: FC<IWindowProps> = ({ messageList }) => {
 
   useEffect(() => {
     ref.current.scrollTop = ref.current.scrollHeight;
-  }, [recipientInfo]);
+  }, [recipientInfo, messagesFetching, messagesLoading]);
 
   useEffect(() => {
     setMessageData([]);
@@ -134,7 +137,7 @@ const Window: FC<IWindowProps> = ({ messageList }) => {
   }, [hover]);
   const handleKeyPress = (e: any) => {
     if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault(); // prevent default behavior of adding a new line
+      e.preventDefault();
       if (text !== "") {
         setMessageData([
           ...newData,
@@ -238,21 +241,32 @@ const Window: FC<IWindowProps> = ({ messageList }) => {
             mxheight={`${resize && "700px"}`}
             height={`${
               resize && messageFirst
-                ? "calc(100% - 54px)"
+                ? "calc(100vh - 332px)"
                 : resize && !messageFirst
                 ? "calc(100vh - 289px)"
                 : messageFirst
                 ? "calc(100% - 98px)"
                 : "calc(100% - 58px)"
             }`}
+            // display="flex"
+            // jContent="space-between"
+            // fDirection="column"
           >
             {isFetching && <Spin indicator={antIcon} />}
-
-            {messageData}
+            {messagesLoading || messagesFetching ? (
+              <Skeleton active />
+            ) : (
+              messageData
+            )}
             {loading && <Spin indicator={antIcon} />}
             {typingData?.sender_id === userInfo?.user_id &&
             typingData?.typing ? (
-              <div style={{ marginTop: "10px", height: "14px" }}>
+              <div
+                style={{
+                  marginTop: "10px",
+                  height: "14px",
+                }}
+              >
                 <Lottie
                   width={100}
                   style={{ margin: "0px 0px 5px 0px" }}
@@ -279,30 +293,18 @@ const Window: FC<IWindowProps> = ({ messageList }) => {
                 ? "calc(100% - 98px)"
                 : "calc(100% - 58px)"
             }`}
-            // height={messageFirst ? "calc(100% - 95px)" : "calc(100% - 54px)"}
           ></CardWrapper>
         )}
 
-        {!declined && (
-          <FormGroup
-            form={form}
-            formItems={MessageInputForm}
-            window
-            emojiOpen={emojiOpen}
-            setEmojiOpen={setEmojiOpen}
-            onFinish={handleSubmit}
-            handleKeyPress={handleKeyPress}
-          />
-        )}
-
-        {/* <FormGroup
+        <FormGroup
           form={form}
           formItems={MessageInputForm}
           window
           emojiOpen={emojiOpen}
           setEmojiOpen={setEmojiOpen}
           onFinish={handleSubmit}
-        /> */}
+          handleKeyPress={handleKeyPress}
+        />
       </Wrapper>
     </>
   );

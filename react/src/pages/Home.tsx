@@ -1,28 +1,20 @@
-import {
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 
 import SvgIcon from "../components/sections/svgIcon";
 import ChatboxNav from "../components/sections/Chatbox/ChatboxNav";
 import MessageList from "../components/sections/Chatbox/MessageList";
 import MessageWindow from "../components/sections/Chatbox/MessageWindow";
 import {
+  useGetUsersQuery,
+  useLazyGetUsersQuery,
   useSocketConnectionQuery,
   useGetMessagesByIdMutation,
   useLazyGetMessagesInfoQuery,
-  useLazyGetUsersQuery,
-  useChangeNotificationStatusMutation,
-  useGetUsersQuery,
   useLazySocketConnectionQuery,
   useReceivePrivateMessageMutation,
+  useChangeNotificationStatusMutation,
 } from "../libs/redux/auth.api";
 import { useNavigate } from "react-router-dom";
-import { IUserInfo } from "../components/sections/Chatbox/types";
 import { chatState } from "../components/meta/Context/ChatProvider";
 import { Wrapper, Content, Flex, Div, Text } from "../components/general";
 import { OpenMessage } from "../assets/images/svg-components/OpenMessage";
@@ -55,8 +47,10 @@ export default function Home() {
   const [changeNotificationStatus, {}] = useChangeNotificationStatusMutation();
   const [getUsers, { data: usersQueryData, isLoading: usersQueryLoading }] =
     useLazyGetUsersQuery();
-  const [getMessagesInfo, { isLoading: messagesLoading, data }] =
-    useLazyGetMessagesInfoQuery();
+  const [
+    getMessagesInfo,
+    { isLoading: messagesLoading, isFetching: messagesFetching, data },
+  ] = useLazyGetMessagesInfoQuery();
   const [receivePrivateMessage, {}] = useReceivePrivateMessageMutation();
 
   useEffect(() => {
@@ -89,8 +83,6 @@ export default function Home() {
     count = count + Number(notification);
     return count;
   });
-
-  const navigate = useNavigate();
 
   const handleGetMessages = useCallback(
     (
@@ -167,7 +159,7 @@ export default function Home() {
             <ChatboxNav active={active} setActive={setActive} />
             <Div
               height={resize ? "calc(100vh - 78px)" : "calc(100% - 76px)"}
-              borderB="1px solid #ABC2DA"
+              borderb="1px solid #ABC2DA"
               borderT="1px solid #ABC2DA"
               borderL="1px solid #ABC2DA"
               borderR="1px solid #ABC2DA"
@@ -183,7 +175,11 @@ export default function Home() {
                   data={data}
                   handleGetMessages={handleGetMessages}
                 />
-                <MessageWindow data={data} messagesLoading={messagesLoading} />
+                <MessageWindow
+                  data={data}
+                  messagesLoading={messagesLoading}
+                  messagesFetching={messagesFetching}
+                />
               </Flex>
             </Div>
           </Content>

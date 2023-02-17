@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { Skeleton } from "antd";
 
 import Window from "./Window";
 import UserInfo from "./UserInfo";
@@ -11,6 +12,7 @@ import { chatState } from "../../meta/Context/ChatProvider";
 const MessageWindow: FC<MessageWindowListProps> = ({
   data,
   messagesLoading,
+  messagesFetching,
 }) => {
   const { opened, collapsed, resize } = chatState();
   return (
@@ -29,7 +31,6 @@ const MessageWindow: FC<MessageWindowListProps> = ({
     >
       {opened && (
         <>
-          {messagesLoading && "Loading..."}
           <>
             <UserInfo data={data} />
             <div
@@ -40,7 +41,11 @@ const MessageWindow: FC<MessageWindowListProps> = ({
                 justifyContent: "space-between",
               }}
             >
-              <Window messageList={data} />
+              <Window
+                messageList={data}
+                messagesLoading={messagesLoading}
+                messagesFetching={messagesFetching}
+              />
             </div>
           </>
         </>

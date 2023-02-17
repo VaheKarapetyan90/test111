@@ -10,7 +10,7 @@ interface IProps {
   borderL?: string;
   borderR?: string;
   borderT?: string;
-  borderB?: string;
+  borderb?: string;
   padding?: string;
   mxWidth?: string;
   alignitems?: string;
@@ -26,7 +26,7 @@ const Flex = styled.div`
   display: ${({ flex }) => flex || "Flex"};
   border-left: ${({ borderL }) => borderL};
   border-right: ${({ borderR }) => borderR};
-  border-bottom: ${({ borderB }) => borderB};
+  border-bottom: ${({ borderb }) => borderb};
   overflow-x: ${({ oX }) => (oX ? "hidden" : "")};
   justify-content: ${({ justifycontent }: IProps) =>
     justifycontent || "center"};

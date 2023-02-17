@@ -16,7 +16,7 @@ type CardWrapperProps = {
   borderL?: string;
   borderR?: string;
   borderT?: string;
-  borderB?: string;
+  borderb?: string;
   mxWidth?: string;
   padding?: string;
   mxheight?: string;
@@ -52,7 +52,7 @@ const CardWrapper = styled.div<CardWrapperProps>`
   border-left: ${({ borderL }) => borderL};
   min-height: ${({ mnHeight }) => mnHeight};
   border-right: ${({ borderR }) => borderR};
-  border-bottom: ${({ borderB }) => borderB};
+  border-bottom: ${({ borderb }) => borderb};
   justify-content: ${({ jContent }) => jContent};
   flex-direction: ${({ fDirection }) => fDirection};
   background-color: ${({ bgc }) => bgc || "#B7D9F2"};

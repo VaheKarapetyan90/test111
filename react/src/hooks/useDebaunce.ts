@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 export const useDebaunce = (value: string, duration: number) => {
-  const [debounced, setDebounced] = useState(" ");
+  const [debounced, setDebounced] = useState("");
 
   useEffect(() => {
     const handler = setTimeout(() => {

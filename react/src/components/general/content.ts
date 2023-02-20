@@ -48,7 +48,7 @@ const Content = styled.div`
   margin: ${({ margin }) => margin || "30px 0 0"};
   width: ${({ width }: IProps) => width || "100%"};
   max-width: ${({ mxWidth }) => mxWidth || "696px"};
-  // min-width: ${({ mnWidth }) => mnWidth || "300px"};
+  min-width: ${({ mnWidth }) => mnWidth};
   text-align: ${({ textAlign }) => textAlign || "center"};
   background-color: ${({ bgc }: IProps) => bgc || "#B7D9F2"};
 

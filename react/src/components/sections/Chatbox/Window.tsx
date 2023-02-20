@@ -69,14 +69,14 @@ const Window: FC<IWindowProps> = ({
 
   const [form] = AntdForm.useForm();
 
-  const defaultOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: animationData,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
-  };
+  // const defaultOptions = {
+  //   loop: true,
+  //   autoplay: true,
+  //   animationData: animationData,
+  //   rendererSettings: {
+  //     preserveAspectRatio: "xMidYMid slice",
+  //   },
+  // };
 
   useEffect(() => {
     if (messageList?.chat?.chat_status === "declined") {
@@ -229,7 +229,7 @@ const Window: FC<IWindowProps> = ({
 
   return (
     <>
-      <Wrapper bgc="#fff" height="100%" display=" " position="">
+      <Wrapper bgc="#fff" height="100%" display=" " position="relative">
         {recipientInfo?.length > 0 ? (
           <CardWrapper
             id="scrollableDiv"
@@ -237,20 +237,17 @@ const Window: FC<IWindowProps> = ({
             top="0"
             oY="scroll"
             bgc="#fff"
-            padding="20px"
+            padding="20px 20px 0 20px"
             mxheight={`${resize && "700px"}`}
             height={`${
               resize && messageFirst
-                ? "calc(100vh - 332px)"
+                ? "calc(100vh - 346px)"
                 : resize && !messageFirst
-                ? "calc(100vh - 289px)"
+                ? "calc(100vh - 303px)"
                 : messageFirst
-                ? "calc(100% - 98px)"
-                : "calc(100% - 58px)"
+                ? "calc(100% - 112px)"
+                : "calc(100% - 72px)"
             }`}
-            // display="flex"
-            // jContent="space-between"
-            // fDirection="column"
           >
             {isFetching && <Spin indicator={antIcon} />}
             {messagesLoading || messagesFetching ? (
@@ -259,23 +256,6 @@ const Window: FC<IWindowProps> = ({
               messageData
             )}
             {loading && <Spin indicator={antIcon} />}
-            {typingData?.sender_id === userInfo?.user_id &&
-            typingData?.typing ? (
-              <div
-                style={{
-                  marginTop: "10px",
-                  height: "14px",
-                }}
-              >
-                <Lottie
-                  width={100}
-                  style={{ margin: "0px 0px 5px 0px" }}
-                  options={defaultOptions}
-                />
-              </div>
-            ) : (
-              ""
-            )}
           </CardWrapper>
         ) : (
           <CardWrapper
@@ -297,12 +277,12 @@ const Window: FC<IWindowProps> = ({
         )}
 
         <FormGroup
-          form={form}
-          formItems={MessageInputForm}
           window
+          form={form}
           emojiOpen={emojiOpen}
-          setEmojiOpen={setEmojiOpen}
           onFinish={handleSubmit}
+          setEmojiOpen={setEmojiOpen}
+          formItems={MessageInputForm}
           handleKeyPress={handleKeyPress}
         />
       </Wrapper>

@@ -28,6 +28,7 @@ const MessageWindow: FC<MessageWindowListProps> = ({
       jContent="felx-start"
       width={`${resize ? "100%" : collapsed ? "380px" : "630px"}`}
       mxWidth={`${resize ? " " : collapsed ? "380px" : "630 px"}`}
+      mnWidth="300px"
     >
       {opened && (
         <>

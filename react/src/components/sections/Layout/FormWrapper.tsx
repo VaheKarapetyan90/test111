@@ -1,9 +1,11 @@
-import React, { FC } from "react";
-import { Wrapper, Content, Flex, Button, Div } from "../../general";
-import { useNavigate } from "react-router-dom";
+import { FC } from "react";
+
 import { WrapperProps } from "./types";
-import { AppRoutes as routes } from "../../../constants/routes.constants";
+
+import { Content, Div } from "../../general";
+
 import chatImg from "../../../assets/images/login-bg.jpg";
+
 import { SenseiLogo } from "../../../assets/images/svg-components/senceiLogo";
 
 const FormWrapper: FC<WrapperProps> = ({ children }) => {

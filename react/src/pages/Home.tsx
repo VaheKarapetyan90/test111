@@ -1,9 +1,13 @@
-import { useCallback, useContext, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import SvgIcon from "../components/sections/svgIcon";
 import ChatboxNav from "../components/sections/Chatbox/ChatboxNav";
 import MessageList from "../components/sections/Chatbox/MessageList";
 import MessageWindow from "../components/sections/Chatbox/MessageWindow";
+
+import { chatState } from "../components/meta/Context/ChatProvider";
+import { OpenMessage } from "../assets/images/svg-components/OpenMessage";
+import { Wrapper, Content, Flex, Div, Text } from "../components/general";
 import {
   useGetUsersQuery,
   useLazyGetUsersQuery,
@@ -14,27 +18,21 @@ import {
   useReceivePrivateMessageMutation,
   useChangeNotificationStatusMutation,
 } from "../libs/redux/auth.api";
-import { useNavigate } from "react-router-dom";
-import { chatState } from "../components/meta/Context/ChatProvider";
-import { Wrapper, Content, Flex, Div, Text } from "../components/general";
-import { OpenMessage } from "../assets/images/svg-components/OpenMessage";
 
 export default function Home() {
   const {
     opened,
-    setOpened,
     active,
-    setActive,
+    setPage,
+    resize,
+    setText,
     userInfo,
+    setActive,
+    setOpened,
+    parsedData,
     setUserInfo,
     messageData,
     setMessageData,
-    page,
-    setPage,
-    resize,
-    text,
-    parsedData,
-    setText,
   } = chatState();
 
   var count = 0;
@@ -146,6 +144,7 @@ export default function Home() {
           <Content
             width="100%"
             mxWidth={resize ? " " : "696px"}
+            mnWidth="404px"
             margin={resize ? " " : "0 30px 30px 0"}
             radius="3px"
             position={resize ? " " : "fixed"}
@@ -171,7 +170,7 @@ export default function Home() {
               >
                 <MessageList
                   usersQueryLoading={usersQueryLoading}
-                  usersQueryData={usersQueryData}
+                  usersQueryData={notf}
                   data={data}
                   handleGetMessages={handleGetMessages}
                 />
@@ -190,7 +189,7 @@ export default function Home() {
             Icon={OpenMessage}
             onClick={() => {
               socketConnection(),
-                getUsers(userInfo?.user_id),
+                // getUsers(userInfo?.user_id),
                 setActive(!active);
             }}
           />

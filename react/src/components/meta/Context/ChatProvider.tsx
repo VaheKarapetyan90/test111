@@ -22,13 +22,14 @@ const ChatContext = createContext<any>({});
 
 const ChatProvider = ({ children }: ChatContextProviderProps) => {
   const ref: any = useRef(null);
-  const [active, setActive] = useState<boolean>(false);
+
   const [auth, setAuth] = useState(false);
   const [text, setText] = useState<string>("");
 
   const [opened, setOpened] = useState<number>();
   const [page, setPage] = useState<number>(1);
   const [loading, setLoading] = useState(false);
+  const [active, setActive] = useState<boolean>(false);
   const [collapsed, setCollapsed] = useState<boolean>(true);
   const [messageData, setMessageData] = useState<any>([]);
   const [firstMessage, setFirstMessage] = useState(false);
@@ -36,6 +37,7 @@ const ChatProvider = ({ children }: ChatContextProviderProps) => {
   const [resize, setResize] = useState(false);
   const [notfCount, setNotfCount] = useState(0);
   const [isOnline, setIsOnline] = useState(false);
+  const [search, setSearch] = useState("");
 
   const data = localStorage.getItem("auth");
   const parsedData = typeof data === "string" && JSON.parse(data);
@@ -82,6 +84,8 @@ const ChatProvider = ({ children }: ChatContextProviderProps) => {
         setCollapsed,
         messageData,
         setMessageData,
+        search,
+        setSearch,
       }}
     >
       {children}

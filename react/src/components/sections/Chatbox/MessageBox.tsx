@@ -35,7 +35,6 @@ const MessageBox: FC<MessageBoxProps> = ({
   setOpenCard,
   onMouseEnter,
   firstMessage,
-  handleSeeStatus,
   handleHideStatus,
 }) => {
   const { collapsed, resize, parsedData } = chatState();
@@ -170,7 +169,6 @@ const MessageBox: FC<MessageBoxProps> = ({
               </Popover>
             )}
             <Div
-              // margin="0 0 0 9px"
               mxWidth={`${
                 resize && !collapsed
                   ? "650px"
@@ -329,7 +327,6 @@ const MessageBox: FC<MessageBoxProps> = ({
           >
             <Div>
               <Div
-                // margin="0 9px 0 0"
                 mxWidth={`${
                   resize && !collapsed
                     ? "650px"

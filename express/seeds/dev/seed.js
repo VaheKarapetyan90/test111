@@ -111,6 +111,7 @@ async function init() {
     const pg = knex(options);
     await seed(pg);
     console.log('Successfully inserted all data ... ');
+    process.kill(process.pid);
   } catch (error) {
     console.error(error.message);
   }

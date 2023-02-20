@@ -40,8 +40,6 @@ export type MessageListProps = {
 
 export type UserInfoProps = {
   data: any;
-  // userStatus: { active?: boolean; last_seen?: string };
-  // chatInfo: { chat_status: string };
 };
 
 export type MessageWindowListProps = {

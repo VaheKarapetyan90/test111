@@ -5,6 +5,13 @@ import knexConfigs from '../knex.configs';
 // Local Modules
 import { LoggerUtil } from '../src/utils';
 
+function down(pg) {
+  return pg.schema
+    .dropTableIfExists('messages')
+    .dropTableIfExists('chats')
+    .dropTableIfExists('users');
+}
+
 function up(pg) {
   return pg.schema
     .createTable('users', (table) => {
@@ -71,8 +78,10 @@ async function init() {
       ? knexConfigs.production
       : knexConfigs.development;
     const pg = knex(options);
+    await down(pg);
     await up(pg);
     console.log('Successfully created all tables ... ');
+    process.kill(process.pid);
   } catch (error) {
     LoggerUtil.error(error.message);
   }

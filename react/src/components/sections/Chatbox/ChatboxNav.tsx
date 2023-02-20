@@ -1,28 +1,35 @@
+import { ShrinkOutlined } from "@ant-design/icons";
 import React, { FC, useEffect, useState } from "react";
 
 import { ChatBoxNavProps } from "./types";
 
 import SvgIcon from "../svgIcon";
-import { ShrinkOutlined } from "@ant-design/icons";
 
-import { Content, Text, Flex, InputSimple, Div } from "../../general";
 import { Close } from "../../../assets/images/svg-components/Close";
 import { Minus } from "../../../assets/images/svg-components/Minus";
 import { Search } from "../../../assets/images/svg-components/Search";
+import { ResizeChat } from "../../../assets/images/svg-components/ResizeChat";
 import { Notification } from "../../../assets/images/svg-components/Notification";
 import { NotificationFill } from "../../../assets/images/svg-components/NotificationFill";
-import { ResizeChat } from "../../../assets/images/svg-components/ResizeChat";
+import { Content, Text, Flex, InputSimple, Div } from "../../general";
+import { chatState } from "../../meta/Context/ChatProvider";
+import { useDebaunce } from "../../../hooks/useDebaunce";
 import {
   useGetUsersQuery,
   useLazyGetUsersQuery,
 } from "../../../libs/redux/auth.api";
-import { chatState } from "../../meta/Context/ChatProvider";
-import { useDebaunce } from "../../../hooks/useDebaunce";
 
 const ChatboxNav: FC<ChatBoxNavProps> = ({ active, setActive }) => {
-  const [search, setSearch] = useState("");
   var count = 0;
-  const { resize, setResize, notfCount, setNotfCount, userInfo } = chatState();
+  const {
+    search,
+    resize,
+    userInfo,
+    setResize,
+    notfCount,
+    setSearch,
+    setNotfCount,
+  } = chatState();
 
   const { data } = useGetUsersQuery(userInfo.user_id);
 
